@@ -1,0 +1,2 @@
+pipewire &
+exec dwm
