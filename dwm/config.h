@@ -15,8 +15,8 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "SpaceMono Nerd Font Mono:size=12:style=Bold" };
+static const char dmenufont[]       = "SpaceMono Nerd Font Mono:size=12:style=Bold";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -34,17 +34,17 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-	"setxkbmap", "-layout", "us,gb,lt", NULL,
-	"setxkbmap", "-option", "'grp:alt_shift_toggle'", NULL,
+	"dwmblocks", NULL,
 	"picom", NULL,
+	"/usr/libexec/polkit-mate-authentication-agent-1", NULL,
 	"flameshot", NULL,
 	"nm-applet", NULL,
-	"~/.fehbg", NULL,
+	"/home/clemens/.fehbg", NULL,
 	NULL /* terminate */
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5" };
+static const char *tags[] = { "1", "2", "3", "4", "5" }; 
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -98,9 +98,15 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "kitty", NULL };
+static const char *pvc[]  = { "pavucontrol", NULL };
+static const char *fm[] = { "pcmanfm", NULL};
+static const char *browser[] = { "chromium", NULL};
+static const char *powermenu[] = {"powermenu.sh", NULL};
+static const char *bluetooth[] = {"bluetooth.sh", NULL};
+static const char *keyboard[] = {"keyboardswitcher.sh", NULL};
 
-
+#include <X11/XF86keysym.h>
 #include "movestack.c"
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -158,6 +164,15 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ 0, XF86XK_AudioMute, spawn,         SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; pkill -RTMIN+10 dwmblocks") },
+        { 0, XF86XK_AudioLowerVolume, spawn,   SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; pkill -RTMIN+10 dwmblocks") },
+        { 0, XF86XK_AudioRaiseVolume, spawn,   SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+; pkill -RTMIN+10 dwmblocks") },
+        { MODKEY,                       XK_w,      spawn,          {.v = pvc} },
+        { MODKEY,                       XK_q,      spawn,          {.v = browser} },
+        { MODKEY,                       XK_e,      spawn,          {.v = fm} },
+        { MODKEY,                       XK_u,      spawn,          {.v = powermenu} },
+        { MODKEY,                       XK_a,      spawn,          {.v = bluetooth} },
+        { MODKEY|ShiftMask,             XK_p,  spawn,          {.v = keyboard} },
 };
 
 /* button definitions */
