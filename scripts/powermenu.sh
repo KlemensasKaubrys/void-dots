@@ -1,20 +1,13 @@
 #!/bin/bash
-
 function powermenu {
-	options="Cancel\nShutdown\nRestart\nSuspend\nHibernate"
-	selected=$(echo -e $options | dmenu -bw 2)
+	options="Shutdown\nRestart\nHibernate"
+	selected=$(echo -e $options | dmenu "$@" )
 	if [[ $selected = "Shutdown" ]]; then 
-		poweroff
+		loginctl poweroff
 	elif [[ $selected = "Restart" ]]; then
-		reboot
-	elif [[ $selected = "Suspend" ]]; then
-		systemctl suspend
+		loginctl reboot
 	elif [[ $selected = "Hibernate" ]]; then
-		systemctl hibernate
-	elif [[ $selected = "Cancel" ]]; then
-		return
+		loginctl hibernate
 	fi
 }
-
-
-powermenu
+powermenu "$@"

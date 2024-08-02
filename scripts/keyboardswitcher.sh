@@ -1,11 +1,16 @@
 #!/bin/bash
-
-LAYOUT=$(setxkbmap -query | awk '/layout/ {print $2}')
-
-if [[ "$LAYOUT" == "lt" ]]; then
-   setxkbmap us
-   pkill -RTMIN+30 dwmblocks
-else
-   setxkbmap lt
-   pkill -RTMIN+30 dwmblocks
-fi
+function keyboard {
+	options="gb\nus\nlt"
+	selected=$(echo -e $options | dmenu "$@" )
+	if [[ $selected = "gb" ]]; then 
+   		setxkbmap gb  
+  		pkill -RTMIN+30 dwmblocks
+	elif [[ $selected = "us" ]]; then
+   		setxkbmap us
+  		pkill -RTMIN+30 dwmblocks
+	elif [[ $selected = "lt" ]]; then
+   		setxkbmap lt
+  		pkill -RTMIN+30 dwmblocks
+	fi
+}
+keyboard "$@"
