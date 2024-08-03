@@ -16,3 +16,5 @@ https://faun.pub/the-easiest-way-to-install-dwm-43bbf668ea83
 https://askubuntu.com/questions/126018/adding-a-new-swap-file-how-to-edit-fstab-to-enable-swap-after-reboot
 
 https://www.reddit.com/r/voidlinux/comments/mlo5c8/question_boot_error_unknown_key_identifier_zoom/
+
+https://www.reddit.com/r/voidlinux/comments/izm3xb/firefox_ugly_fonts/
