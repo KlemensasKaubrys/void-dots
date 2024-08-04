@@ -169,7 +169,7 @@ static const Key keys[] = {
         { MODKEY,                       XK_w,      spawn,          {.v = pvc} },
         { MODKEY,                       XK_q,      spawn,          {.v = browser} },
         { MODKEY,                       XK_e,      spawn,          {.v = fm} },
-        { MODKEY|ShiftMask,             XK_p,      spawn,          {.v = powermenu} },
+        { MODKEY|ShiftMask,             XK_l,      spawn,          {.v = powermenu} },
         { MODKEY,                       XK_a,      spawn,          {.v = bluetooth} },
         { MODKEY|ShiftMask,             XK_p,  spawn,          {.v = keyboard} },
 };
