@@ -4,6 +4,7 @@
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
+alias yt-mp3='yt-dlp -f bestaudio --extract-audio --audio-quality 0 --audio-format mp3 -o "%(playlist_index)02d - %(title)s.%(ext)s"'
 PS1='[\u@\h \W]\$ '
 export PATH="/home/clemens/.scripts:$PATH"
 extract() {
@@ -28,5 +29,5 @@ extract() {
 		fi
 	done
 }
-sleep 0.02 
+sleep 0.009 
 fastfetch
