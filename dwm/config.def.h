@@ -17,11 +17,11 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Inter:size=12","Font Awesome 6 Free:size=12" };
 static const char dmenufont[]       = "Inter:size=15";
-static const char col_gray1[]       = "#151922";
+static const char col_gray1[]       = "#0a0f14";
 static const char col_gray2[]       = "#20252e";
 static const char col_gray3[]       = "#81809a";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#183446";
+static const char col_gray4[]       = "#ffffff";
+static const char col_cyan[]        = "#403F4C";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -39,6 +39,7 @@ static const char *const autostart[] = {
 	"flameshot", NULL,
 	"nm-applet", NULL,
 	"/home/clemens/.fehbg", NULL,
+	"/usr/local/bin/dwmblocks", NULL,
 	NULL /* terminate */
 };
 
@@ -169,9 +170,10 @@ static const Key keys[] = {
         { MODKEY,                       XK_w,      spawn,          {.v = pvc} },
         { MODKEY,                       XK_q,      spawn,          {.v = browser} },
         { MODKEY,                       XK_e,      spawn,          {.v = fm} },
-        { MODKEY|ShiftMask,             XK_l,      spawn,          {.v = powermenu} },
+        { MODKEY,                       XK_F4,     spawn,          {.v = powermenu} },
         { MODKEY,                       XK_a,      spawn,          {.v = bluetooth} },
-        { MODKEY|ShiftMask,             XK_p,  spawn,          {.v = keyboard} },
+        { MODKEY|ShiftMask,             XK_p,      spawn,          {.v = keyboard} },
+        { MODKEY,                       XK_F1,     spawn,          SHCMD("betterlockscreen -l --off 15 --show-layout") },
 };
 
 /* button definitions */
