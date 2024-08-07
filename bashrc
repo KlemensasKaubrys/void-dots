@@ -28,4 +28,5 @@ extract() {
 		fi
 	done
 }
+sleep 0.02 
 fastfetch

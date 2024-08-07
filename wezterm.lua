@@ -30,8 +30,8 @@ config.cursor_blink_ease_in = 'Linear'
 config.cursor_blink_ease_out = 'Linear'
 
 
-config.initial_cols = 140 
-config.initial_rows = 48
+config.initial_cols = 120 
+config.initial_rows = 40 
 
 -- shell
 config.default_prog = { "bash" }
