@@ -163,9 +163,9 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ 0, XF86XK_AudioMute, spawn,         SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; pkill -RTMIN+10 dwmblocks") },
-        { 0, XF86XK_AudioLowerVolume, spawn,   SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; pkill -RTMIN+10 dwmblocks") },
-        { 0, XF86XK_AudioRaiseVolume, spawn,   SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+; pkill -RTMIN+10 dwmblocks") },
+	{ 0, XF86XK_AudioMute, spawn,         SHCMD("dunst-volume.sh toggle") },
+        { 0, XF86XK_AudioLowerVolume, spawn,   SHCMD("dunst-volume.sh -5%") },
+        { 0, XF86XK_AudioRaiseVolume, spawn,   SHCMD("dunst-volume.sh +5%") },
         { MODKEY,                       XK_w,      spawn,          {.v = pvc} },
         { MODKEY,                       XK_q,      spawn,          {.v = browser} },
         { MODKEY,                       XK_e,      spawn,          {.v = fm} },
