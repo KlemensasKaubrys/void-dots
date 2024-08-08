@@ -3,10 +3,10 @@
     "logo": {
         "type": "kitty-direct",
 	"source": "/home/clemens/void-dots/fastfetch/icons/Tsunami.png",
-        "width": 50,
-     	"height": 5,
+        "width": 54,
+     	"height": 4,
 	"padding": {
-		"top": 6,
+		"top": 7,
 		"right": 1,
 		"left": 1
 	}
