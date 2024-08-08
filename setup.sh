@@ -21,6 +21,7 @@ ln -s /home/$username/void-dots/xinitrc /home/$username/.xinitrc
 ln -s /home/$username/void-dots/wezterm.lua /home/$username/.wezterm.lua
 ln -s /home/$username/void-dots/scripts /home/$username/.scripts
 ln -s /home/$username/void-dots/Thunar /home/$username/.config/
+ln -s /home/$username/void-dots/dunst /home/$username/.config/
 ln -s /home/$username/void-dots/mpd /home/$username/.config/
 ln -s /home/$username/void-dots/fastfetch /home/$username/.config/
 ln -s /home/$username/void-dots/ncmpcpp /home/$username/.config/
@@ -34,7 +35,7 @@ chown -R $username:$username /home/$username/.config/gtk-4.0
 chown -R $username:$username /home/$username/.config/gtk-3.0
 
 # Install base system
-xbps-install -S base-devel xorg libX11-devel libXft-devel libXinerama-devel freetype-devel fontconfig-devel xinit xprop picom dunst feh git btop Thunar network-manager-applet mate-polkit pipewire wireplumber picard mpd ncmpcpp yt-dlp flameshot lutris gvfs lxappearance pavucontrol arc-theme nerd-fonts font-awesome6 font-inter mesa-dri xf86-video-amdgpu mesa-vaapi mesa-vdpau vulkan-loader mesa-vulkan-radeon amdvlk firefox betterlockscreen libspa-bluetooth bluez anki syncthing wezterm mpv fastfetch curl 7zip xauth starship ffmpeg
+xbps-install -S base-devel xorg libX11-devel libXft-devel libXinerama-devel freetype-devel fontconfig-devel xinit xprop picom dunst feh git btop Thunar network-manager-applet mate-polkit pipewire wireplumber picard mpd ncmpcpp yt-dlp flameshot lutris gvfs lxappearance pavucontrol arc-theme nerd-fonts font-awesome6 font-inter mesa-dri xf86-video-amdgpu mesa-vaapi mesa-vdpau vulkan-loader mesa-vulkan-radeon amdvlk firefox betterlockscreen libspa-bluetooth bluez anki syncthing wezterm mpv fastfetch curl 7zip xauth starship ffmpeg ufw 
 
 ln -s /etc/sv/dbus /var/service/
 
@@ -48,12 +49,12 @@ ln -s /usr/share/examples/wireplumber/10-wireplumber.conf /etc/pipewire/pipewire
 ln -s /usr/share/examples/pipewire/20-pipewire-pulse.conf /etc/pipewire/pipewire.conf.d/
 
 # Setting up firewall
-sudo ufw limit 22/tcp
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-sudo ufw enable
+ufw limit 22/tcp
+ufw allow 80/tcp
+ufw allow 443/tcp
+ufw default deny incoming
+ufw default allow outgoing
+ufw enable
 ln -s /etc/sv/ufw /var/service/
 
 # Building dwm, dmenu, dwmblocks

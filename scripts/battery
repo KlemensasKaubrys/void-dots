@@ -1,0 +1,23 @@
+#!/bin/sh
+# Description: Script to get battery status
+
+for battery in /sys/class/power_supply/BAT?; do
+    percent=$(cat "$battery/capacity")  # battery percentage
+    status="$(cat "$battery/status")"   # battery status
+
+    [ "$status" = "Charging" ] && icon_charge=" "
+
+    if  [ "$percent" -eq 100 ]; then
+        icon_battery="  "
+    elif [ "$percent" -ge 51 ]; then
+        icon_battery="  "
+    elif [ "$percent" -ge 25 ]; then
+        icon_battery="  "
+    elif [ "$percent" -ge 10 ]; then
+        icon_battery="  "
+    else
+        icon_battery="  "
+    fi
+
+    printf "%s%s%s%%" "$icon_charge" "$icon_battery" "$percent"
+done && exit 0
