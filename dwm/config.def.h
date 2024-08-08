@@ -106,6 +106,7 @@ static const char *powermenu[] = {"powermenu.sh", "-m", dmenumon, "-fn", dmenufo
 static const char *bluetooth[] = {"bluetooth.sh", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-bw", "2", NULL};
 static const char *keyboard[] = {"keyboardswitcher.sh", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-bw", "2", NULL};
 
+#define PrintScreenDWM	    0x0000ff61
 #include <X11/XF86keysym.h>
 #include "movestack.c"
 static const Key keys[] = {
@@ -174,6 +175,7 @@ static const Key keys[] = {
         { MODKEY,                       XK_a,      spawn,          {.v = bluetooth} },
         { MODKEY|ShiftMask,             XK_p,      spawn,          {.v = keyboard} },
         { MODKEY,                       XK_F1,     spawn,          SHCMD("betterlockscreen -l --off 15 --show-layout") },
+	{ 0,    PrintScreenDWM,      spawn,                        SHCMD("flameshot gui")  },
 };
 
 /* button definitions */
