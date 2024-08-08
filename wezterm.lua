@@ -30,7 +30,7 @@ config.cursor_blink_ease_in = 'Linear'
 config.cursor_blink_ease_out = 'Linear'
 
 
-config.initial_cols = 120 
+config.initial_cols = 121 
 config.initial_rows = 40 
 
 -- shell
