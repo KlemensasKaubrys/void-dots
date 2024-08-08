@@ -35,9 +35,10 @@ chown -R $username:$username /home/$username/.config/gtk-4.0
 chown -R $username:$username /home/$username/.config/gtk-3.0
 
 # Install base system
-xbps-install -S base-devel xorg libX11-devel libXft-devel libXinerama-devel freetype-devel fontconfig-devel xinit xprop picom dunst feh git btop Thunar network-manager-applet mate-polkit pipewire wireplumber picard mpd ncmpcpp yt-dlp flameshot lutris gvfs lxappearance pavucontrol arc-theme nerd-fonts font-awesome6 font-inter mesa-dri xf86-video-amdgpu mesa-vaapi mesa-vdpau vulkan-loader mesa-vulkan-radeon amdvlk firefox betterlockscreen libspa-bluetooth bluez anki syncthing wezterm mpv fastfetch curl 7zip xauth starship ffmpeg ufw 
+xbps-install -S base-devel xorg libX11-devel libXft-devel libXinerama-devel freetype-devel fontconfig-devel elogind xinit xprop picom dunst feh git btop Thunar network-manager-applet mate-polkit pipewire wireplumber picard mpd ncmpcpp yt-dlp flameshot lutris gvfs lxappearance pavucontrol arc-theme nerd-fonts font-awesome6 font-inter mesa-dri xf86-video-amdgpu mesa-vaapi mesa-vdpau vulkan-loader mesa-vulkan-radeon amdvlk firefox betterlockscreen libspa-bluetooth bluez anki syncthing wezterm mpv fastfetch curl 7zip xauth starship ffmpeg ufw 
 
 ln -s /etc/sv/dbus /var/service/
+ln -s /etc/sv/bluetoothd /var/service/
 
 # Disabling bitmaps because they break firefox fonts
 ln -s /usr/share/fontconfig/conf.avail/70-no-bitmaps.conf /etc/fonts/conf.d/
