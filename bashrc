@@ -31,6 +31,5 @@ extract() {
 }
 sleep 0.009 
 fastfetch
-export PATH=/home/clemens/.local/bin:/home/clemens/.scripts:/home/clemens/.scripts:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/bin
-export PATH=/home/clemens/.local/bin:/home/clemens/.scripts:/home/clemens/.scripts:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/bin
-export PATH=/home/clemens/.local/bin:/home/clemens/.scripts:/home/clemens/.scripts:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/bin
+
+eval "$(starship init bash)"
