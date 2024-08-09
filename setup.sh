@@ -95,7 +95,7 @@ echo "/var/swap/swapfile none swap sw 0 0" >> /etc/fstab
 # Setting up hibernation
 ROOT_UUID=$(blkid -s UUID -o value /dev/mapper/luks*)
 resume_offset=$(btrfs inspect-internal map-swapfile -r /var/swap/swapfile)
-sudo sed -i "/^GRUB_CMDLINE_LINUX_DEFAULT=/ s/\"$/ resume=UUID=$ROOT_UUID resume_offset=$resume_offset\"/" /home/clemens/grub
+sudo sed -i "/^GRUB_CMDLINE_LINUX_DEFAULT=/ s/\"$/ resume=UUID=$ROOT_UUID resume_offset=$resume_offset\"/" /etc/default/grub
 update-grub
 
 # Setting up snapper
