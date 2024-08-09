@@ -35,6 +35,7 @@ static const char *colors[][3]      = {
 
 static const char *const autostart[] = {
 	"picom", NULL,
+	"mpd", NULL,
 	"/usr/libexec/polkit-mate-authentication-agent-1", NULL,
 	"flameshot", NULL,
 	"nm-applet", NULL,

@@ -35,11 +35,15 @@ chown -R $username:$username /home/$username/.config/gtk-4.0
 chown -R $username:$username /home/$username/.config/gtk-3.0
 
 # Install base system
-xbps-install -S base-devel xorg libX11-devel libXft-devel libXinerama-devel freetype-devel fontconfig-devel elogind xinit xprop picom dunst feh git btop Thunar network-manager-applet mate-polkit pipewire wireplumber picard mpd ncmpcpp yt-dlp flameshot lutris gvfs lxappearance pavucontrol arc-theme nerd-fonts font-awesome6 font-inter mesa-dri xf86-video-amdgpu mesa-vaapi mesa-vdpau vulkan-loader mesa-vulkan-radeon amdvlk firefox betterlockscreen libspa-bluetooth bluez anki syncthing wezterm mpv fastfetch curl 7zip xauth starship ffmpeg ufw 
+xbps-install -S base-devel xorg libX11-devel libXft-devel libXinerama-devel freetype-devel fontconfig-devel elogind xinit xprop picom dunst feh git btop Thunar network-manager-applet mate-polkit pipewire wireplumber picard mpd ncmpcpp yt-dlp flameshot lutris gvfs lxappearance pavucontrol arc-theme nerd-fonts font-awesome6 font-inter mesa-dri xf86-video-amdgpu mesa-vaapi mesa-vdpau vulkan-loader mesa-vulkan-radeon amdvlk firefox betterlockscreen libspa-bluetooth bluez syncthing wezterm mpv fastfetch curl 7zip xauth starship ffmpeg ufw mpc flatpak
 
 ln -s /etc/sv/dbus /var/service/
-ln -s /etc/sv/mpd /var/service/
 ln -s /etc/sv/bluetoothd /var/service/
+
+# Downloading anki and adding it to binaries
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub net.ankiweb.Anki
+ln -s /var/lib/flatpak/exports/bin/net.ankiweb.Anki /usr/bin/anki
 
 # Disabling bitmaps because they break firefox fonts
 ln -s /usr/share/fontconfig/conf.avail/70-no-bitmaps.conf /etc/fonts/conf.d/
@@ -74,7 +78,7 @@ cd $builddir
 xbps-install -S tlp tlp-rdw smartmontools ethtool
 rm /etc/tlp.conf
 ln -s /home/$username/void-dots/tlp.conf /etc/
-sudo tlp start
+tlp start
 ln -s /etc/sv/tlp /var/service/
 
 # Create the swapfile
@@ -87,6 +91,12 @@ dd if=/dev/zero of=/var/swap/swapfile bs=1G count=20 status=progress
 mkswap /var/swap/swapfile
 swapon /var/swap/swapfile
 echo "/var/swap/swapfile none swap sw 0 0" >> /etc/fstab
+
+# Setting up hibernation
+ROOT_UUID=$(blkid -s UUID -o value /dev/mapper/luks*)
+resume_offset=$(btrfs inspect-internal map-swapfile -r /var/swap/swapfile)
+sudo sed -i "/^GRUB_CMDLINE_LINUX_DEFAULT=/ s/\"$/ resume=UUID=$ROOT_UUID resume_offset=$resume_offset\"/" /home/clemens/grub
+update-grub
 
 # Setting up snapper
 cd /
@@ -101,7 +111,7 @@ btrfs subvolume list /
 btrfs subvolume set-default 256 / 
 vim /etc/snapper/configs/root 
 chown -R :wheel /.snapshots
-sudo ln -s /etc/sv/snapperd /var/service/
+ln -s /etc/sv/snapperd /var/service/
 snapper -c root create --description 'Post install'
 update-grub
 
